@@ -61,6 +61,7 @@ export default class Application {
       (screw) => this.updateScrew(screw),
       () => this.move(),
       () => this.reset(),
+      resetCameraView,
     );
     if (!(gui === undefined)) {
       this.guiHelper.addToGui(gui);

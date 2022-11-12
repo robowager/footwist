@@ -194,6 +194,12 @@ function addNotes() {
   );
   sublist.appendChild(subitem);
 
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('Reset removes visualizations, returns reference axes to identity, and restores the default camera view. Reset view only restores the camera view.'),
+  );
+  sublist.appendChild(subitem);
+
   item.appendChild(sublist);
   list.appendChild(item);
 }

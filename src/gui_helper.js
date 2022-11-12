@@ -183,12 +183,15 @@ export class GuiHelper {
    *     arguments: (Screw)
    * @param {function} moveCallback - function to call when move button is pressed
    * @param {function} resetCallback - function to call when reset button is pressed
+   * @param {function} resetViewCallback - function to call when reset view button is
+   *     pressed
    */
-  constructor(defaultScrew, inputCallback, moveCallback, resetCallback) {
+  constructor(defaultScrew, inputCallback, moveCallback, resetCallback, resetViewCallback) {
     this.defaultScrew = defaultScrew;
     this.inputCallback = inputCallback;
     this.moveCallback = moveCallback;
     this.resetCallback = resetCallback;
+    this.resetViewCallback = resetViewCallback;
 
     // add a field for every leaf
     REPRESENTATION_LEAF_PATHS.forEach((elem) => {
@@ -414,6 +417,12 @@ export class GuiHelper {
     }
   }
 
+  resetView() {
+    if (!(this.resetViewCallback === undefined)) {
+      this.resetViewCallback();
+    }
+  }
+
   /**
    * Given a gui object, add
    * - folders for each representation,
@@ -506,6 +515,7 @@ export class GuiHelper {
 
     gui.add(this, 'move');
     gui.add(this, 'reset');
+    gui.add(this, 'resetView').name('reset view');
 
     this.addedToGui = true;
   }
