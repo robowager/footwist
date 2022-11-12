@@ -394,7 +394,9 @@ export class GuiHelper {
     throw new Error(`Unknown representation: ${representation}`);
   }
 
-  // TODO: docstring
+  /**
+   * Function called when move button is pressed.
+   */
   move() {
     // disable the gui inputs
     this.enableAllControllers(false);
@@ -404,7 +406,9 @@ export class GuiHelper {
     }
   }
 
-  // TODO: docstring
+  /**
+   * Function called when reset button is pressed.
+   */
   reset() {
     // re-enable the gui fields
     this.enableAllControllers(true);
@@ -417,6 +421,9 @@ export class GuiHelper {
     }
   }
 
+  /**
+   * Function called when reset view button is pressed.
+   */
   resetView() {
     if (!(this.resetViewCallback === undefined)) {
       this.resetViewCallback();

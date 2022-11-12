@@ -95,7 +95,6 @@ export default class Application {
     // reset state variables
     // If this is not done, move -> reset -> move with same inputs will not draw
     // helper viz
-    // TODO: test
     this.screw = this.defaultScrew;
     this.prevScrew = this.defaultScrew;
     this.moveRequested = false;

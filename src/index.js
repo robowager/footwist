@@ -202,6 +202,45 @@ function addNotes() {
 
   item.appendChild(sublist);
   list.appendChild(item);
+
+  item = document.createElement('li');
+  item.appendChild(
+    document.createTextNode('Example transforms to get started, with position (x, y, z) and quaternion (x, y, z, w) stated'),
+  );
+
+  sublist = document.createElement('ul');
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('pure translation: position (1, 1, 1), quaternion (0, 0, 0, 1)'),
+  );
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('pure rotation about origin: position (0, 0, 0), quaternion (0, 0, 0.5, 0.866)'),
+  );
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('pure rotation, offset axis: position (1, 1, 0), quaternion (0, 0, 0.5, 0.866)'),
+  );
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('rotation and translation: position (1, 1, 1), quaternion (0, 0, 0.5, 0.866)'),
+  );
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('arbitrary pose: position (1, 1.5, 2), quaternion (-0.5, 0.5, 0.5, 0.5)'),
+  );
+  sublist.appendChild(subitem);
+
+  item.appendChild(sublist);
+  list.appendChild(item);
 }
 
 addNotes();
