@@ -58,15 +58,25 @@ const clock = new Clock();
 let gui;
 let application;
 
+/**
+* Reset camera view to the default.
+* Camera controls reset + camera position set is required to consistently
+* set view, don't entirely understand how.
+*/
+function resetCameraView() {
+  cameraControls.reset();
+  camera.position.copy(defaultCameraPosition);
+}
+
 function init() {
   // By default the grid is in the xz plane, rotate so it is in the xy plane.
   gridHelper.quaternion.copy(new Quaternion(0.7071068, 0, 0, 0.7071068));
 
-  camera.position.copy(defaultCameraPosition);
+  resetCameraView();
   cameraControls.update();
 
   gui = new GUI();
-  application = new Application(defaultScrew, scene, camera, defaultCameraPosition, cameraControls, gui);
+  application = new Application(defaultScrew, scene, resetCameraView, gui);
 }
 
 function animate() {

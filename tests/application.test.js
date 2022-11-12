@@ -11,7 +11,7 @@ import {
   transformFromThreePose,
 } from '../src/util';
 
-// application is shared between all tests
+// common to all tests
 const defaultScrew = new Screw(new Axis([0, 0, 0], [0, 0, 1]), Infinity, 0);
 
 // simple translation along z

@@ -15,25 +15,18 @@ export default class Application {
    *
    * To allow testing application logic in a render-free mode,
    * the following inputs are allowed to be undefined:
-   * scene, camera, defaultCameraPosition, cameraControls, gui.
+   * scene, resetCameraView, gui.
    *
    * @param {Screw} defaultScrew
    * @param {three.Scene} scene
-   * @param {three.Camera} camera
-   * @param {three.Vector3} defaultCameraPosition - used
-   *    to reset camera
-   * @param {three..TrackballControls} cameraControls - used
-   *    to reset camera
+   * @param {function} resetCameraView
    * @param {lil-ui.GUI} gui
    */
-  constructor(defaultScrew, scene, camera, defaultCameraPosition, cameraControls, gui) {
+  constructor(defaultScrew, scene, resetCameraView, gui) {
     this.defaultScrew = defaultScrew;
     this.scene = scene;
     this.usingScene = !(this.scene === undefined);
-    // if scene is undefined, camera and its default position are unused
-    this.camera = camera;
-    this.defaultCameraPosition = defaultCameraPosition;
-    this.cameraControls = cameraControls;
+    this.resetCameraView = resetCameraView;
 
     // the displayed axes
     this.refAxes = myAxesHelper(1, true, 0.02);
@@ -112,13 +105,8 @@ export default class Application {
     setThreeObjectPoseFromScrew(this.refAxes, this.defaultScrew);
 
     // reset view
-    // Found that camera controls reset + camera position set is required to get
-    // to initial view, don't entirely understand how.
-    if (!(this.cameraControls === undefined)) {
-      this.cameraControls.reset();
-    }
-    if (!(this.camera === undefined)) {
-      this.camera.position.copy(this.defaultCameraPosition);
+    if (!(this.resetCameraView === undefined)) {
+      this.resetCameraView();
     }
 
     this.removeVizFromScene();
