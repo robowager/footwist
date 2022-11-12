@@ -94,33 +94,34 @@ function addNotes() {
   let item;
   item = document.createElement('li');
   [
-    document.createTextNode('The github repository for this code is  '),
+    document.createTextNode('The github repository for this project is  '),
     createLinkElement(
       document,
       'https://github.com/robowager/footwist',
       'here',
     ),
+    document.createTextNode('.'),
   ].forEach((child) => item.appendChild(child));
   list.appendChild(item);
 
   item = document.createElement('li');
   item.appendChild(
     document.createTextNode(
-      'This tool assumes knowledge of twists. '
-        + 'Rigid body transformations can be represented as the exponential of twists. ',
+      'Rigid body transforms can be represented as the exponential of twists. For details, see',
     ),
   );
 
-  const sublist = document.createElement('ul');
+  let sublist = document.createElement('ul');
   let subitem;
   subitem = document.createElement('li');
   [
-    document.createTextNode('For details see the wiki on '),
+    document.createTextNode('the Wikipedia page on '),
     createLinkElement(
       document,
       'https://en.wikipedia.org/wiki/Screw_theory',
       'Screw theory',
     ),
+    document.createTextNode(','),
   ].forEach((child) => subitem.appendChild(child));
   sublist.appendChild(subitem);
 
@@ -133,7 +134,7 @@ function addNotes() {
       'MLS book',
     ),
     document.createTextNode(
-      ', which was used for implementing the mappings used here.',
+      ', which was the reference for mappings implemented here.',
     ),
   ].forEach((child) => subitem.appendChild(child));
   sublist.appendChild(subitem);
@@ -142,30 +143,48 @@ function addNotes() {
   list.appendChild(item);
 
   item = document.createElement('li');
+  item.appendChild(
+    document.createTextNode('Using the gui'),
+  );
+
+  sublist = document.createElement('ul');
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('Use any representation (transform, twist, screw) to update the pose of the reference axes.'),
+  );
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
   [
+    document.createTextNode('On move, a screw that realizes the transform is visualized (see  '),
     createLinkElement(
       document,
       'https://en.wikipedia.org/wiki/Chasles%27_theorem_(kinematics)',
       "Chasles' theorem",
     ),
-    document.createTextNode(
-      ' states that every rigid body transform can be realized by a screw motion.',
-    ),
-  ].forEach((child) => item.appendChild(child));
-  list.appendChild(item);
+    document.createTextNode('). The reference axes are moved from the origin to the pose along the screw.'),
+  ].forEach((child) => subitem.appendChild(child));
+  sublist.appendChild(subitem);
 
-  item = document.createElement('li');
+  subitem = document.createElement('li');
   [
-    document.createTextNode(
-      'Only quaternions are currently supported for orientation. '
-        + 'For other representations, try a tool such as ',
-    ),
+    document.createTextNode('Only quaternion inputs are currently supported for orientation. For other representations, try a tool such as '),
     createLinkElement(
       document,
       'https://www.andre-gaschler.com/rotationconverter/',
       '3D Rotation Converter',
     ),
-  ].forEach((child) => item.appendChild(child));
+    document.createTextNode('.'),
+  ].forEach((child) => subitem.appendChild(child));
+  sublist.appendChild(subitem);
+
+  subitem = document.createElement('li');
+  subitem.appendChild(
+    document.createTextNode('The quaternion is treated as identity if w is 1 or -1. The x, y, z components are normalized based on w.'),
+  );
+  sublist.appendChild(subitem);
+
+  item.appendChild(sublist);
   list.appendChild(item);
 }
 
