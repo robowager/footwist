@@ -66,7 +66,7 @@ function init() {
   cameraControls.update();
 
   gui = new GUI();
-  application = new Application(defaultScrew, scene, camera, defaultCameraPosition, gui);
+  application = new Application(defaultScrew, scene, camera, defaultCameraPosition, cameraControls, gui);
 }
 
 function animate() {
